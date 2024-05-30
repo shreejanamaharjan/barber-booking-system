@@ -1,6 +1,6 @@
 import React from 'react'
 
-const homePage = () => {
+const HomePage = () => {
   return (
     <div>
       <h1>Home Page</h1>
@@ -8,4 +8,4 @@ const homePage = () => {
   )
 }
 
-export default homePage
+export default HomePage;
