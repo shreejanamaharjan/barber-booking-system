@@ -1,12 +1,24 @@
 import React from 'react'
 import '../styles/RegisterStyles.css'
-import {Button, Form, Input} from 'antd'
-import {Link} from 'react-router-dom'
+import {Button, Form, Input, message} from 'antd'
+import axios from 'axios'
+import {Link, useNavigate} from 'react-router-dom'
 const Register = () => {
- 
+  const navigate = useNavigate()
   // form handler
-  const onfinishhandler = (values) =>{
-    console.log(values)
+  const onfinishhandler = async(values) =>{
+    try{
+      const res = await axios.post('api/user/register', values)
+      if(res.data.success){
+        message.success('register successfully')
+        navigate('/login')
+      }else{
+        message.error('something went wrong');
+      }
+    }catch(error){
+      console.log(error)
+      message.error('something went wrong')
+    }
   }
   return (
     <>
@@ -30,4 +42,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Register;
