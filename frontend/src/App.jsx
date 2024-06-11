@@ -1,23 +1,32 @@
-import { BrowserRouter, Routes, Route  } from "react-router-dom"
-import HomePage from "./pages/HomePage"
-import Login from "./pages/Login"
-import Register from "./pages/Register"
-import './App.css'
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
+import "./App.css";
+import Layout from "./layout/Layout";
 
 function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-      );
-};
+  return <Layout />;
+}
 
-export default App
+export default App;
+
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import "./App.css";
+// import HomePage from "./pages/HomePage";
+// import Login from "./pages/Login";
+// import Register from "./pages/Register";
+
+// function App() {
+//   return (
+//     <>
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path="/" element={<HomePage />} />
+//           <Route path="/login" element={<Login />} />
+//           <Route path="/register" element={<Register/>} />
+//         </Routes>
+//       </BrowserRouter>
+//     </>
+//   );
+// };
+
+// export default App;
+
+
