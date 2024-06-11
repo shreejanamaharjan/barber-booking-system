@@ -1,8 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
-import HomePage from "./pages/HomePage";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import { BrowserRouter, Routes, Route  } from "react-router-dom"
+import HomePage from "./pages/HomePage"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import './App.css'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
@@ -11,11 +13,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register/>} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </>
-  );
+      );
 };
 
-export default App;
+export default App
