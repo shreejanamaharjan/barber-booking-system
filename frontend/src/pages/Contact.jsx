@@ -1,12 +1,6 @@
 import React from "react";
 
 const Contact = () => {
-  const [userData, setUserData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
   return (
     <section>
       <div className="px-4 mx-auto max-w-screen-md">
