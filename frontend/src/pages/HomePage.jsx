@@ -36,7 +36,6 @@ const HomePage = () => {
   return (
     <Layout>
       <div className="homepage-container">
-        <h1>homepage</h1>
         <div className="button-container">
           <button className="nav-button">Home</button>
           <button className="nav-button">Gallery</button>
