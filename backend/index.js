@@ -5,7 +5,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import connectDB from './database/db.js';
-import router from "./Routes/auth.js"; 
+import authRouter from "./Routes/auth.js";
+import userRouter from "./Routes/user.js"
 
 
 dotenv.config()
@@ -18,7 +19,7 @@ const corsOptions = {
     credentials: true,
 };
 
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
     res.send("hello");
 });
 
@@ -29,10 +30,12 @@ app.get('/', (req, res)=>{
 // middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.json())
 app.use(cors(corsOptions));
-app.use('/barber-booking-system', router);
+app.use('/barber-booking-system/auth', authRouter);
+app.use('/barber-booking-system/users', userRouter);
 
-app.listen(port, () =>{
-    console.log("server is running on port"+ port);
+app.listen(port, () => {
+    console.log("server is running on port" + port);
     connectDB();
 })
