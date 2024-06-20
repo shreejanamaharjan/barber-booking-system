@@ -8,6 +8,10 @@ import jwt from 'jsonwebtoken';
 const generateToken = user => {
     return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET_KEY)
 }
+
+function isEmailValid(Email) {
+
+}
 export const register = async (req, res) => {
     const { name, email, password, role, gender } = req.body;
     try {

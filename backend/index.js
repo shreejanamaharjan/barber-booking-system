@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import connectDB from './database/db.js';
 import authRouter from "./Routes/auth.js";
 import userRouter from "./Routes/user.js"
+import barberRouter from "./Routes/barber.js";
 
 
 dotenv.config()
@@ -34,6 +35,7 @@ app.use(bodyParser.json())
 app.use(cors(corsOptions));
 app.use('/barber-booking-system/auth', authRouter);
 app.use('/barber-booking-system/users', userRouter);
+app.use('/barber-booking-system/barbers', barberRouter);
 
 app.listen(port, () => {
     console.log("server is running on port" + port);

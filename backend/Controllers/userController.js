@@ -1,4 +1,6 @@
 import User from "../models/UserSchema.js";
+import Barber from "../models/BarberSchema.js";
+
 
 export const getAllUser = async (req, res) => {
 
@@ -76,5 +78,31 @@ export const getUserByRole = async (req, res) => {
     } catch (error) {
         console.log(error)
         res.status(500).json({ success: false, message: "internal server error" })
+    }
+}
+
+export const getUserProfile = async (req, res) => {
+    const userID = req.userID
+    try {
+        const user = await User.findById(userID)
+        if (!user) {
+            return res.status(404).json({ success: false, message: "USER NOT FOUND" })
+
+        }
+        const { password, ...rest } = user._doc;
+        res.status(200).json({ success: true, message: "profile info is getting", data: { ...rest } })
+    } catch (error) {
+        res.status(500).json({ success: false, message: "internal server error" })
+    }
+}
+
+export const getMyAppointment = async (req, res) => {
+    try {
+        // retrieve appointment from booking for specific user
+
+        // extract doctor if from appointment booking
+        // retieve doctor using doctor id
+    } catch (error) {
+
     }
 }

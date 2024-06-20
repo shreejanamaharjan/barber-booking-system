@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import logo from '../assets/images/logo.png';
-import userImg from '../assets/images/userImg.png';
-import { Navigate, Link, NavLink } from 'react-router-dom';
-import {BiMenu} from "react-icons/bi";
+import logo from "../assets/images/logo.png";
+import userImg from "../assets/images/userImg.png";
+import { useNavigate, Link, NavLink } from "react-router-dom";
+import { BiMenu } from "react-icons/bi";
+import { AuthContext } from "../context/AuthContext";
 
 const navLinks = [
   {
@@ -24,11 +25,20 @@ const navLinks = [
 ];
 
 const Header = () => {
-  const headerRef = useRef(null)
-  const menuRef = useRef(null)
+  const headerRef = useRef(null);
+  const menuRef = useRef(null);
+  const { user, token, role } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+    localStorage.removeItem("token");
+  };
 
   const handleStickyHeader = () => {
-    window.addEventListener('scroll', ()=>{
+    window.addEventListener("scroll", () => {
       if (
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
@@ -37,12 +47,11 @@ const Header = () => {
       } else {
         headerRef.current.classList.remove("sticky__header");
       }
-    })
-    
+    });
   };
 
   useEffect(() => {
-   handleStickyHeader()
+    handleStickyHeader();
 
     return () => {
       window.removeEventListener("scroll", handleStickyHeader);
@@ -50,16 +59,16 @@ const Header = () => {
   }, []);
 
   const toggleMenu = () => {
-    menuRef.current.classList.toggle('show__menu')
+    menuRef.current.classList.toggle("show__menu");
   };
 
   return (
-    <header className='header flex items-center' ref={headerRef}>
-      <div className='container'>
-        <div className='flex items-center justify-between'>
-           {/* Logo */}
-           <div>
-             <img src={logo} alt="" height={50} width={80} />
+    <header className="header flex items-center" ref={headerRef}>
+      <div className="container">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <div>
+            <img src={logo} alt="" height={50} width={80} />
           </div>
 
           {/* menu */}
@@ -69,7 +78,7 @@ const Header = () => {
                 <li key={index}>
                   <NavLink
                     to={link.path}
-                    className={navClass =>
+                    className={(navClass) =>
                       navClass.isActive
                         ? "text-primaryColor text-[16px] leading-7 font-[600]"
                         : "text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor"
@@ -85,33 +94,34 @@ const Header = () => {
           {/* ----------- nav right ---------- */}
 
           <div className="flex items-center gap-4">
-            <div>
-              <Link to="/">
-                <figure className="w-[35px] h-[35px] rounded-full cursor-pointer">
-                  <img src={userImg} className="w-full rounded-full" alt=""  />
-                </figure>
-              </Link>
-            </div>
-
-            
+            {token && user ? (
+              <div className="flex items-center gap-4">
+                <Link to={`${role === "barber" ? "/barber:id" : "/user"}`}>
+                  <h4>{user.name}</h4>
+                </Link>
+                <button
+                  className="bg-primaryColor py-2 px-6 text-white font-[400] h-[44px] flex items-center justify-center rounded-[50px]"
+                  onClick={logout}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
               <Link to="/login">
                 <button className="bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]">
                   Login
                 </button>
               </Link>
+            )}
 
-              <span className="md:hidden" onClick={toggleMenu}>
+            <span className="md:hidden" onClick={toggleMenu}>
               <BiMenu className="w-6 h-6 cursor-pointer" />
             </span>
-          
           </div>
-
         </div>
       </div>
-
     </header>
-    
-  )
-}
+  );
+};
 
 export default Header;

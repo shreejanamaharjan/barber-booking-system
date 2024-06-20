@@ -1,12 +1,15 @@
-import React, {useEffect} from 'react';
-import axios from 'axios';
-import { Layout } from 'antd';
-import Slider from 'react-slick';
+import React, { useEffect } from "react";
+import axios from "axios";
+import { Layout } from "antd";
+import Slider from "react-slick";
+import slider1 from "../slider_images/slide1.jpg";
+import slider2 from "../slider_images/slide2.jpg";
+import slider3 from "../slider_images/slide3.jpg";
 
 const HomePage = () => {
-//login user data
+  //login user data
   const getUserData = async () => {
-    try{
+    try {
       const res = await axios.post(
         "/api/v1/user/getUserData",
         {},
@@ -16,7 +19,7 @@ const HomePage = () => {
           },
         }
       );
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
   };
@@ -30,39 +33,38 @@ const HomePage = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   };
 
   return (
     <Layout>
-      <div className="homepage-container">
-        <div className="button-container">
-          <button className="nav-button">Home</button>
-          <button className="nav-button">Gallery</button>
-          <button className="nav-button">Services</button>
-          <button className="nav-button">About Us</button>
-        </div>
-      </div>
       <div className="slider-container">
         <Slider {...settings}>
           <div>
-            <img src="./src/slider images/slide1.jpg" alt="Slide 1" />
+            <img src={slider1} alt="Slide 1" />
           </div>
           <div>
-            <img src="./src/slider images/slide2.jpg" alt="Slide 2" />
+            <img src={slider2} alt="Slide 2" />
           </div>
           <div>
-            <img src="./src/slider images/slide3.jpg" alt="Slide 3" />
+            <img src={slider3} alt="Slide 3" />
           </div>
         </Slider>
-        <div className= "description">
-          <h1 className='header'>Find the best Barber Shop</h1>
-           <p>Where style meets precision.<br />We believe that a great haircut is more than just a trim – it's an experience. Our platform is a heaven for those who value style, precision, and top-notch service with few clicks.We healp you find skilled barbers dedicated to delivering personalized grooming solutions that leave you looking sharp and feeling confident.</p>
+        <div className="description">
+          <h1 className="header">Find the best Barber Shop</h1>
+          <p>
+            Where style meets precision.
+            <br />
+            We believe that a great haircut is more than just a trim – it's an
+            experience. Our platform is a heaven for those who value style,
+            precision, and top-notch service with few clicks.We healp you find
+            skilled barbers dedicated to delivering personalized grooming
+            solutions that leave you looking sharp and feeling confident.
+          </p>
         </div>
       </div>
     </Layout>
   );
 };
-
 
 export default HomePage;
