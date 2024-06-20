@@ -4,9 +4,10 @@ import { Button, Form, Input, message } from "antd";
 import axios from "axios";
 import signupImg from "../assets/images/signup.png";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../config";
+import { AuthContext } from "../context/AuthContext.jsx";
+
 const Register = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [previewURL, setpreviewURL] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,17 +16,36 @@ const Register = () => {
     role: "customer",
   });
 
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleFileInputChange = async (event) => {
-    const file = event.target.files[0];
-
-    console.log(file);
-  };
   const submitHandler = async (event) => {
     event.preventDefault();
+
+    try {
+      const res = await fetch(`${BASE_URL}/auth/register`, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) alert(result.message);
+
+      dispatch({ type: "REGISTER_SUCCESS" });
+
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+      alert(err.message);
+    }
   };
   return (
     <section className="px-5 xl:px-0">
