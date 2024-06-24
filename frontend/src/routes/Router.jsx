@@ -7,6 +7,7 @@ import Contact from "../pages/Contact";
 import Barber from "../pages/Barber/Barber";
 import BarberDetail from "../pages/Barber/BarberDetail";
 import User from "../pages/User/User";
+import VerifyEmail from "../pages/VerifyEmail";
 import { Routes, Route } from "react-router-dom";
 
 const Router = () => {
@@ -20,7 +21,8 @@ const Router = () => {
       <Route path="/services" element={<Services />} />
       <Route path="/barber" element={<Barber />} />
       <Route path="/barber:id" element={<BarberDetail />} />
-      <Route path="/user" element={<User />} />
+      <Route path="/user:id" element={<User />} />
+      <Route path="/verifyEmail" element={<VerifyEmail />} />
     </Routes>
   );
 };
