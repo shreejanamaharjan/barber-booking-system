@@ -1,5 +1,6 @@
 import User from "../models/UserSchema.js";
 import Barber from "../models/BarberSchema.js";
+import UserProfile from "../models/UserProfileSchema.js"
 
 
 export const getAllUser = async (req, res) => {
@@ -113,5 +114,36 @@ export const uploadImage = async (req, res) => {
         res.status(200).json({ success: true, message: 'Image uploaded successfully', file: req.file, });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message, });
+    }
+};
+
+
+export const getUser = async (req, res) => {
+    try {
+        const result = await UserProfile.aggregate([
+            {
+                $lookup: {
+                    from: 'User',
+                    localField: 'userId',
+                    foreignField: '_id',
+                    as: 'userDetails'
+
+                }
+            },
+            {
+                $unwind: '$userDetails'
+            },
+            {
+                $project: {
+                    _id: 1,
+                    'userDetails.name': 1,
+                }
+            }
+        ]);
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: 'failed to fetch' });
+
     }
 };

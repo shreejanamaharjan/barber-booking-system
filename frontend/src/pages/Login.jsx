@@ -46,10 +46,10 @@ const Login = () => {
         console.log(result, "login data");
 
         navigate("/home");
-        alert(result.message);
       } else {
         alert(result.message);
       }
+      // alert(result.message);
     } catch (err) {
       console.log(err);
       alert(err.message);
