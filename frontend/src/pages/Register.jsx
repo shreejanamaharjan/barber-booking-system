@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import "../styles/RegisterStyles.css";
+
 import { Button, Form, Input, message } from "antd";
 import axios from "axios";
 import signupImg from "../assets/images/signup.png";
@@ -37,11 +38,14 @@ const Register = () => {
 
       const result = await res.json();
 
-      if (!res.ok) alert(result.message);
+      if (res.ok) {
+        dispatch({ type: "REGISTER_SUCCESS" });
 
-      dispatch({ type: "REGISTER_SUCCESS" });
-
-      navigate("/login");
+        navigate("/login");
+        alert(result.message);
+      } else {
+        alert(result.message);
+      }
     } catch (err) {
       console.log(err);
       alert(err.message);

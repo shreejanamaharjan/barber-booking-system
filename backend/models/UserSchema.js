@@ -10,8 +10,18 @@ const UserSchema = new mongoose.Schema({
     enum: ["customer", "barber"],
     default: "customer",
   },
+  image: {
+    data: Buffer,
+    contentType: String
+  },
+  location: { type: String },
   gender: { type: String, enum: ["male", "female", "other"] },
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  emailVerificationCode: { type: String },
 });
 
 export default mongoose.model("User", UserSchema);

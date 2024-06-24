@@ -96,7 +96,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             {token && user ? (
               <div className="flex items-center gap-4">
-                <Link to={`${role === "barber" ? "/barber:id" : "/user"}`}>
+                <Link to={`${role === "barber" ? "/barber:id" : "/user:id"}`}>
                   <h4>{user.name}</h4>
                 </Link>
                 <button
