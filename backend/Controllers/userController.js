@@ -84,7 +84,7 @@ export const getUserByRole = async (req, res) => {
 export const getUserProfile = async (req, res) => {
     const userID = req.userID
     try {
-        const user = await User.findById(userID)
+        const user = await User.findById(userID).select("-password")
         if (!user) {
             return res.status(404).json({ success: false, message: "USER NOT FOUND" })
 
@@ -106,3 +106,12 @@ export const getMyAppointment = async (req, res) => {
 
     }
 }
+
+// Controller to handle image upload
+export const uploadImage = async (req, res) => {
+    try {
+        res.status(200).json({ success: true, message: 'Image uploaded successfully', file: req.file, });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message, });
+    }
+};

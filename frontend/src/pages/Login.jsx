@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "../styles/RegisterStyles.css";
 import { Button, Form, Input, message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import { BASE_URL } from "../config";
 import { AuthContext } from "../context/AuthContext.jsx";
 
@@ -33,20 +33,23 @@ const Login = () => {
 
       const result = await res.json();
 
-      if (!res.ok) alert(result.message);
+      if (res.ok) {
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: {
+            user: result.data,
+            role: result.data.role,
+            token: result.token,
+          },
+        });
 
-      dispatch({
-        type: "LOGIN_SUCCESS",
-        payload: {
-          user: result.data,
-          role: result.data.role,
-          token: result.token,
-        },
-      });
+        console.log(result, "login data");
 
-      console.log(result, "login data");
-
-      navigate("/home");
+        navigate("/home");
+        alert(result.message);
+      } else {
+        alert(result.message);
+      }
     } catch (err) {
       console.log(err);
       alert(err.message);
