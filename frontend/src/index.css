@@ -32,7 +32,7 @@
     }
   
     .header {
-      @apply flex justify-between items-center py-[30px] px-[35px] bg-[url('./assets/images/mask.png')] bg-no-repeat bg-cover bg-center;
+      @apply flex justify-between items-center py-[30px] px-[35px] bg-[url('./assets/images/header.jpg')] bg-no-repeat bg-cover bg-center;
     }
   
     .hero__section {
