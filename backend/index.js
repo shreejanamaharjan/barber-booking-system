@@ -8,9 +8,12 @@ import connectDB from './database/db.js';
 import authRouter from "./Routes/auth.js";
 import userRouter from "./Routes/user.js"
 import barberRouter from "./Routes/barber.js";
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
 
 dotenv.config()
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express()
 const port = process.env.PORT || 5000;
@@ -34,8 +37,9 @@ app.use(cookieParser());
 app.use(bodyParser.json())
 app.use(cors(corsOptions));
 app.use('/barber-booking-system/auth', authRouter);
-app.use('/barber-booking-system/users', userRouter);
+app.use('/barber-booking-system/users', userRouter,);
 app.use('/barber-booking-system/barbers', barberRouter);
+app.use('/barber-booking-system/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(port, () => {
     console.log("server is running on port" + port);

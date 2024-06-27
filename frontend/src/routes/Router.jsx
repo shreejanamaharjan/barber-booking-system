@@ -9,6 +9,7 @@ import BarberDetail from "../pages/Barber/BarberDetail";
 import User from "../pages/User/User";
 import VerifyEmail from "../pages/VerifyEmail";
 import { Routes, Route } from "react-router-dom";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 const Router = () => {
   return (
@@ -21,7 +22,14 @@ const Router = () => {
       <Route path="/services" element={<Services />} />
       <Route path="/barber" element={<Barber />} />
       <Route path="/barber:id" element={<BarberDetail />} />
-      <Route path="/user:id" element={<User />} />
+      <Route
+        path="/user/profile/me"
+        element={
+          <ProtectedRoutes allowedRoles={["customer"]}>
+            <User />
+          </ProtectedRoutes>
+        }
+      />
       <Route path="/verifyEmail" element={<VerifyEmail />} />
     </Routes>
   );
