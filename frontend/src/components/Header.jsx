@@ -78,7 +78,7 @@ const Header = () => {
                 <li key={index}>
                   <NavLink
                     to={link.path}
-                    className={(navClass) =>
+                    lcassName={(navClass) =>
                       navClass.isActive
                         ? "text-primaryColor text-[16px] leading-7 font-[600]"
                         : "text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor"
@@ -96,7 +96,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             {token && user ? (
               <div className="flex items-center gap-4">
-                <Link to={`${role === "barber" ? "/barber:id" : "/user:id"}`}>
+                <Link to={`${role === "barber" ? "/barber:id" : "/user"}`}>
                   <h4>{user.name}</h4>
                 </Link>
                 <button

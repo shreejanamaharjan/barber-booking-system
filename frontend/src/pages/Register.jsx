@@ -3,7 +3,7 @@ import "../styles/RegisterStyles.css";
 
 import { Button, Form, Input, message } from "antd";
 import axios from "axios";
-import signupImg from "../assets/images/signup.png";
+import signupImg from "../assets/images/signup.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config";
 import { AuthContext } from "../context/AuthContext.jsx";
@@ -57,13 +57,13 @@ const Register = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           {/* image box */}
           <div className="hidden lg:block rounded-l-lg">
-            <figure className="rounded-l-lg">
+            <figure className="rounded-l-lg px=0">
               <img
                 src={signupImg}
                 alt=""
                 className=" rounded-l-lg "
                 height={150}
-                width={400}
+                width={400} m-0 p-0
               />
             </figure>
           </div>

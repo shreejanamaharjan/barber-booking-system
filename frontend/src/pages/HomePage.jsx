@@ -2,6 +2,11 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { Layout } from "antd";
 import image from '../assets/images/home.png'; 
+import icon1 from '../assets/images/icon1.jpg'; 
+import icon2 from '../assets/images/icon2.jpg'; 
+import icon3 from '../assets/images/icon3.jpg'; 
+import { Link } from 'react-router-dom';
+import {BsArrowRight} from 'react-icons/bs';
 
 
 const HomePage = () => {
@@ -22,45 +27,9 @@ const HomePage = () => {
     }
   };
 
-  // React.useEffect(() => {
-  //   // Any side effects can go here
-  // }, []);
-
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  // };
-
-  //Homepage Section
+  {/* HomePage Section */}
   return (
-    // <section className= "home_section pt-[60px] 2xl:h-[800px]">
-    //   <div className="container">
-    //     <div className="flex felx-col lg:flex-row gap-[90px] items-center justify-between">
-    //       {/* HomePage Content */}
-    //       <div>
-    //         <div className="lg:w-[570px]">
-    //           <h1 className="text-[36px] leading-[46px] text-headingColor font-[800] md:text-[60px] md:leading-[70px]">
-    //           Where style meets precision.
-    //           </h1>
-    //           <p>
-    //           We believe that a great haircut is more than just a trim – it's an
-    //         experience. Our platform is a heaven for those who value style,
-    //         precision, and top-notch service with few clicks.We healp you find
-    //         skilled barbers dedicated to delivering personalized grooming
-    //         solutions that leave you looking sharp and feeling confident.
-    //           </p>
-    //           <button className="btn">Look for an Appointment</button>
-    //         </div>
-    //         <div className="lg:w-1/2">
-    //         <img src={image} alt="Description of Image" className="w-full h-auto" />
-    //       </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
+    <>
     <section className="home_section pt-4 2xl:h-[800px]">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-8 items-center justify-between">
@@ -69,13 +38,39 @@ const HomePage = () => {
             <h1 className="text-4xl leading-tight font-serif italic md:text-5xl md:leading-tight text-irisBlueColor">
               Where style meets precision.
             </h1>
-            <p className="mt-4 text-lg text-gray-700">
+            <p className="mt-4 text-base text-gray-700">
               We believe that a great haircut is more than just a trim – it's an experience.
               Our platform is a haven for those who value style, precision, and top-notch
               service with few clicks. We help you find skilled barbers dedicated to delivering
               personalized grooming solutions that leave you looking sharp and feeling confident.
             </p>
             <button className="btn">Look for an Appointment</button>
+            {/* HomePage counter */}
+        <div className="mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]">
+            <div>
+              <h2 className="text-[36px] leading-[56px] lg:text-[30px] lg:leading-[54px] font-[700] text-headingColor">
+                +20
+              </h2>
+              <span className="w-[100px] h-2 bg-blue-300 rounded-full block mt-[-14px]"></span>
+              <p className="text__para text-base">Years of experience</p>
+            </div>
+
+            <div>
+              <h2 className="text-[36px] leading-[56px] lg:text-[30px] lg:leading-[54px] font-[700] text-headingColor">
+                +80
+              </h2>
+              <span className="w-[100px] h-2 bg-irisBlueColor rounded-full block mt-[-14px]"></span>
+              <p className="text__para text-base">Our Awesome Experts</p>
+            </div>
+
+            <div>
+              <h2 className="text-[36px] leading-[56px] lg:text-[30px] lg:leading-[54px] font-[700] text-headingColor">
+                +1000
+              </h2>
+              <span className="w-[100px] h-2 bg-green-300 rounded-full block mt-[-14px]"></span>
+              <p className="text__para text-base">Happy Customers</p>
+            </div>
+          </div>
           </div>
           <div className="lg:w-1/2">
             <img src={image} alt="Barber Image" className="h-auto object-cover" />
@@ -83,6 +78,78 @@ const HomePage = () => {
         </div>
       </div>
     </section>
+
+    {/* Our Services */}
+     <section>
+      <div className="container mt-[50px]">
+        <div className="lg:w-[600px] mx-auto">
+          <h2 className="heading text-[35px] text-center">Providing the Best Services</h2>
+          <p className="text__para text-center text-base">
+            Transform your look with our professional haircut services. Whether you prefer classic styles or the latest trends, our skilled barbers are here to deliver precise cuts tailored to your preferences.</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
+          <div className="py-[30px] px-5">
+            <div className="flex items-center justify-center">
+              <img src={icon1} alt="" className="w-[130px] h-[130px]" />
+            </div>
+
+            <div className="mt-[30px] flex flex-col items-center">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                Find a Barber
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
+              A barber near you and book an appointment with just a few clicks for a hassle-free grooming experience.
+              </p>
+
+              <Link to='/barber' className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none">
+               <BsArrowRight className="group-hover:text-white w-6 h-5" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="py-[30px] px-5">
+            <div className="flex items-center justify-center">
+              <img src={icon2} alt="" className="w-[130px] h-[130px]" />
+            </div>
+
+            <div className="mt-[30px] flex flex-col items-center">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                Find a Location
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
+              A barber near you and book an appointment with just a few clicks for a hassle-free grooming experience.
+              </p>
+
+              <Link to='/barber' className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none">
+               <BsArrowRight className="group-hover:text-white w-6 h-5" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="py-[30px] px-5">
+            <div className="flex items-center justify-center">
+              <img src={icon3} alt="" className="w-[130px] h-[130px]" />
+            </div>
+
+            <div className="mt-[30px] flex flex-col items-center">
+              <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
+                Book an Appointment
+              </h2>
+              <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
+              A barber near you and book an appointment with just a few clicks for a hassle-free grooming experience.
+              </p>
+
+              <Link to='/barber' className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none">
+               <BsArrowRight className="group-hover:text-white w-6 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+     </section>
+     </>
+
   );
 };
 
