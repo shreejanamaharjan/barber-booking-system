@@ -7,7 +7,7 @@ import icon2 from '../assets/images/icon2.jpg';
 import icon3 from '../assets/images/icon3.jpg'; 
 import { Link } from 'react-router-dom';
 import {BsArrowRight} from 'react-icons/bs';
-
+import aboutImg from '../assets/images/image.jpg';
 
 const HomePage = () => {
   //login user data
@@ -99,7 +99,7 @@ const HomePage = () => {
                 Find a Barber
               </h2>
               <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
-              A barber near you and book an appointment with just a few clicks for a hassle-free grooming experience.
+              Select a barber based on their expertise, ratings and availability for a personalized grooming experience.
               </p>
 
               <Link to='/barber' className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none">
@@ -118,7 +118,7 @@ const HomePage = () => {
                 Find a Location
               </h2>
               <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
-              A barber near you and book an appointment with just a few clicks for a hassle-free grooming experience.
+              Quickly locate the nearest barber shop, ensuring convenient access to services based on current location.
               </p>
 
               <Link to='/barber' className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none">
@@ -137,7 +137,7 @@ const HomePage = () => {
                 Book an Appointment
               </h2>
               <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
-              A barber near you and book an appointment with just a few clicks for a hassle-free grooming experience.
+              Schedule preferred date and time for a haircut, streamlining the process for both the customer and the barber.
               </p>
 
               <Link to='/barber' className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none">
@@ -148,8 +148,23 @@ const HomePage = () => {
         </div>
       </div>
      </section>
-     </>
 
+     {/* About Us Section */}
+     <div className="container mt-[50px]">
+        <div className="lg:w-[600px] mx-auto">
+          <h2 className="heading text-[35px] text-center">About Us</h2>
+       </div>
+       <div className="flex flex-col lg:flex-row items-start lg:items-center">
+          <p className="text__para text-left text-base lg:w-1/2 leading-loose">
+            The Barber Booking System website is a comprehensive platform designed to simplify and enhance the barber shop experience for both clients and barbers. Users can effortlessly find nearby barber shops, browse through detailed barber profiles, view available services, and book appointments at their convenience. The system offers features like real-time availability, customer reviews, and personalized recommendations, ensuring a seamless and efficient booking process. For barbers, the platform provides tools to manage appointments, client relationships, and service offerings, optimizing their workflow and increasing customer satisfaction.
+          </p>
+
+         <div className="lg:w-1/3 lg:ml-6 lg:self-end">
+           <img src={aboutImg} alt="" className="h-auto w-full lg:ml-20" />
+         </div>
+       </div>
+     </div>
+     </>
   );
 };
 
