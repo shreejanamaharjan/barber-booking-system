@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { Layout } from "antd";
-import image from '../assets/images/home.png'; 
+import image from '../assets/images/collage.jpg'; 
 import icon1 from '../assets/images/icon1.jpg'; 
 import icon2 from '../assets/images/icon2.jpg'; 
 import icon3 from '../assets/images/icon3.jpg'; 
