@@ -7,7 +7,7 @@ import icon2 from '../assets/images/icon2.jpg';
 import icon3 from '../assets/images/icon3.jpg'; 
 import { Link } from 'react-router-dom';
 import {BsArrowRight} from 'react-icons/bs';
-import aboutImg from '../assets/images/image.jpg';
+import aboutImg from '../assets/images/barber.jpg';
 
 const HomePage = () => {
   //login user data
@@ -83,7 +83,7 @@ const HomePage = () => {
      <section>
       <div className="container mt-[50px]">
         <div className="lg:w-[600px] mx-auto">
-          <h2 className="heading text-[35px] text-center">Providing the Best Services</h2>
+          <h2 className="heading text-[35px] text-center text-primaryColor">Providing the Best Services</h2>
           <p className="text__para text-center text-base">
             Transform your look with our professional haircut services. Whether you prefer classic styles or the latest trends, our skilled barbers are here to deliver precise cuts tailored to your preferences.</p>
         </div>
@@ -151,9 +151,8 @@ const HomePage = () => {
 
      {/* About Us Section */}
      <div className="container mt-[50px]">
-        <div className="lg:w-[600px] mx-auto">
-          <h2 className="heading text-[35px] text-center">About Us</h2>
-       </div>
+          <h2 className="heading text-[35px] text-center text-primaryColor">About Us</h2>
+       
        <div className="flex flex-col lg:flex-row items-start lg:items-center">
           <p className="text__para text-left text-base lg:w-1/2 leading-loose">
             The Barber Booking System website is a comprehensive platform designed to simplify and enhance the barber shop experience for both clients and barbers. Users can effortlessly find nearby barber shops, browse through detailed barber profiles, view available services, and book appointments at their convenience. The system offers features like real-time availability, customer reviews, and personalized recommendations, ensuring a seamless and efficient booking process. For barbers, the platform provides tools to manage appointments, client relationships, and service offerings, optimizing their workflow and increasing customer satisfaction.
