@@ -3,22 +3,23 @@ import mongoose from "mongoose";
 const bookingSchema = new mongoose.Schema(
     {
         barber: {
-            type: mongoose.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
-            required: true,
+
         },
-        user: {
-            type: mongoose.Types.ObjectId,
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
-            required: true,
+
         },
-        ticketPrice: {
-            type: String,
-            required: true
+        phone: { type: Number },
+        price: {
+            type: Number,
+
         },
-        appointments: {
+        appointmentsDate: {
             type: Date,
-            required: true
+
         },
         status: {
             type: String,
@@ -29,6 +30,9 @@ const bookingSchema = new mongoose.Schema(
             type: Boolean,
             default: true,
         },
+        comments: {
+            type: String,
+        }
     },
     { timestamps: true }
 );

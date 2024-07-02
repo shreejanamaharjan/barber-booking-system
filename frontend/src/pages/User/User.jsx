@@ -2,31 +2,31 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { BASE_URL } from "../../config";
-import Bookings from "./Bookings";
+// import Bookings from "./Bookings";
 import Profile from "./Profile";
 import userImg from "../../assets/images/userImg.png";
 
 const User = () => {
   const { user, token } = useContext(AuthContext);
   const [userInfo, setuserInfo] = useState({});
-  const [userDetails, setUserDetails] = useState({});
+  const [photo, setPhoto] = useState({});
   const [tab, setTab] = useState("bookings");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get(
-          `${BASE_URL}/users/userProfile/${user._id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setuserInfo(response);
-        console.log(userInfo.data.user);
+        const response = await axios.get(`${BASE_URL}/users/${user._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setuserInfo(response.data);
+        // setuserInfo(userInfo.data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
+        setLoading(false);
       }
     };
 
@@ -34,6 +34,18 @@ const User = () => {
       fetchUserInfo();
     }
   }, [user, token]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  // console.log(userInfo.data.photo);
+  if (!userInfo || !userInfo.data) {
+    return <div>No user information available</div>;
+  }
+
+  // const photoUrl = userInfo.data.photo
+  //   ? `${BASE_URL}/${userInfo.data.photo}`
+  //   : userImg;
 
   return (
     <section>
@@ -43,16 +55,18 @@ const User = () => {
             <div className="flex items-center justify-center">
               <figure className="w-[100px] h-[100px] rounded-full border-2 border-solid border-primaryColor">
                 <img
-                  src={userImg}
+                  src={`http://localhost:5000/barber-booking-system/uploads/${userInfo.data.photo}`}
                   alt=""
                   className="w-full h-full rounded-full"
                 />
               </figure>
             </div>
             <div className="text-center mt-4">
-              <div className="text-[18px] leading-[30px] text-headingColor font-bold"></div>
+              <div className="text-[18px] leading-[30px] text-headingColor font-bold">
+                {userInfo.data.email}
+              </div>
               <div className="text-[14px] leading-[30px] text-primaryColor font-semibold ">
-                Gender:
+                Gender:{userInfo.data.gender}
               </div>
             </div>
             <div className="mt-[50px] md:mt-[100px]">
@@ -81,7 +95,7 @@ const User = () => {
                 Profile Setting
               </button>
             </div>
-            {tab === "bookings" && <Bookings user={userInfo} />}
+            {/* {tab === "bookings" && <Bookings user={userInfo} />} */}
             {tab === "settings" && <Profile users={userInfo} />}
           </div>
         </div>

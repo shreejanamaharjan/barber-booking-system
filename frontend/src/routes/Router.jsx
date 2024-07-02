@@ -7,6 +7,7 @@ import Contact from "../pages/Contact";
 import Barber from "../pages/Barber/Barber";
 import BarberDetail from "../pages/Barber/BarberDetail";
 import User from "../pages/User/User";
+import Booking from "../pages/Booking";
 import VerifyEmail from "../pages/VerifyEmail";
 import { Routes, Route } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
@@ -21,7 +22,8 @@ const Router = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/services" element={<Services />} />
       <Route path="/barber" element={<Barber />} />
-      <Route path="/barber:id" element={<BarberDetail />} />
+      <Route path="/barber/profile/me" element={<BarberDetail />} />
+      <Route path="/booking" element={<Booking />} />
       <Route
         path="/user/profile/me"
         element={

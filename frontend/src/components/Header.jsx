@@ -5,25 +5,6 @@ import { useNavigate, Link, NavLink } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { AuthContext } from "../context/AuthContext";
 
-const navLinks = [
-  {
-    path: "/home",
-    display: "Home",
-  },
-  {
-    path: "/barber",
-    display: "Find a Barber",
-  },
-  {
-    path: "/services",
-    display: "Services",
-  },
-  {
-    path: "/contact",
-    display: "Contact",
-  },
-];
-
 const Header = () => {
   const headerRef = useRef(null);
   const menuRef = useRef(null);
@@ -49,6 +30,25 @@ const Header = () => {
       }
     });
   };
+
+  const navLinks = [
+    {
+      path: "/home",
+      display: "Home",
+    },
+    {
+      path: role === "barber" ? "/barber/profile/me" : "/barber",
+      display: "Find a Barber",
+    },
+    {
+      path: "/services",
+      display: "Services",
+    },
+    {
+      path: "/contact",
+      display: "Contact",
+    },
+  ];
 
   useEffect(() => {
     handleStickyHeader();
@@ -98,7 +98,9 @@ const Header = () => {
               <div className="flex items-center gap-4">
                 <Link
                   to={`${
-                    role === "barber" ? "/barber:id" : "/user/profile/me"
+                    role === "barber"
+                      ? "/barber/profile/me"
+                      : "/user/profile/me"
                   }`}
                 >
                   <h4>{user.name}</h4>

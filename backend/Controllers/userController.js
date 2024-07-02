@@ -1,7 +1,7 @@
 import User from "../models/UserSchema.js";
 import Barber from "../models/BarberSchema.js";
 import UserProfile from "../models/UserProfileSchema.js";
-import Booking from "../models/Booking Schema.js";
+import Booking from "../models/BookingSchema.js";
 import bcrypt from "bcryptjs"
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -94,6 +94,7 @@ export const getSingleUser = async (req, res) => {
         if (!users) {
             return res.status(404).send("user not found");
         }
+
         res.status(200).json({ success: true, message: "user found", data: users });
     } catch (error) {
         console.log(error)
@@ -129,22 +130,12 @@ export const getUserProfile = async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
 
-        const userProfile = await UserProfile.findOne({ userId: user._id });
-
-        if (!userProfile) {
-            return res.status(404).json({ message: "User profile not found" });
-        }
-        console.log(userProfile)
 
         // // Assuming you want to send the image data as a base64 string
         // const imageData = userProfile.image.data.toString("base64");
 
         res.status(200).json({
-            user,
-            userProfile: {
-                location: userProfile.location,
-                photo: userProfile.photo,
-            },
+            user
         });
 
     } catch (error) {
@@ -162,6 +153,7 @@ export const updateUserProfile = async (req, res) => {
         const user = await User.findByIdAndUpdate(
             req.params.id,
             req.body,
+            req.file,
             { new: true }
         ).select("-password");
         if (!user) {
@@ -176,26 +168,29 @@ export const updateUserProfile = async (req, res) => {
             }
             user.password = await bcrypt.hash(password, 10);
         }
+
+        if (location) user.location = location;
+        if (photo) user.photo = photo;
         await user.save();
 
-        let userProfile = await UserProfile.findOne({ userId: user._id });
+        // let userProfile = await UserProfile.findOne({ userId: user._id });
 
-        if (!userProfile) {
-            userProfile = new UserProfile({
-                userId: user._id,
-                photo,
-                location,
-                phone,
-            });
-        } else {
-            // Update user profile details
-            if (location) userProfile.location = location;
-            if (photo) userProfile.photo = photo;
-        }
-        console.log("The user profle", userProfile)
+        // if (!userProfile) {
+        //     userProfile = new UserProfile({
+        //         userId: user._id,
+        //         photo,
+        //         location,
+        //         phone,
+        //     });
+        // } else {
+        //     // Update user profile details
+        //     if (location) userProfile.location = location;
+        //     if (photo) userProfile.photo = photo;
+        // }
+        // console.log("The user profle", userProfile)
 
-        await userProfile.save();
-        res.status(201).json({ message: 'User updated successfully', userProfile });
+        // await userProfile.save();
+        res.status(201).json({ message: 'User updated successfully', user });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });

@@ -18,6 +18,10 @@ const UserSchema = new mongoose.Schema({
     default: false,
   },
   emailVerificationCode: { type: String },
+  photo: {
+    type: String
+  },
+  location: { type: String },
 });
 
 export default mongoose.model("User", UserSchema);

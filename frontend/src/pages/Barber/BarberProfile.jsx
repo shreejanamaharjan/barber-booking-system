@@ -4,8 +4,8 @@ import { BASE_URL } from "../../config.js";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import axios from "axios";
 
-const Profile = ({ users }) => {
-  console.log(users.data._id);
+const BarberProfile = (barber) => {
+  // console.log(users.data._id);
   const { token } = useContext(AuthContext);
   const [selectedFile, setSelectedFile] = useState(null);
   const [fileName, setFileName] = useState("");
@@ -16,17 +16,23 @@ const Profile = ({ users }) => {
     photo: "",
     location: "",
     phone: "",
+    bio: "",
+    specification: "",
+    experience: "",
   });
-
+  console.log(barber.user._id);
   useEffect(() => {
     setFormData({
-      name: users?.data.name || "",
-      password: users?.data.password || "",
-      location: users?.data.location || "",
-      phone: users?.data.phone || "",
-      photo: users?.data.photo || "",
+      name: barber?.user.name || "",
+      password: barber?.user.password || "",
+      location: barber?.user.location || "",
+      phone: barber?.user.phone || "",
+      photo: barber?.user.photo || "",
+      specification: barber?.user.specification || "",
+      bio: barber?.user.bio || "",
+      experience: barber?.user.experience || "",
     });
-  }, [users]);
+  }, [barber]);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,19 +50,22 @@ const Profile = ({ users }) => {
     event.preventDefault();
 
     try {
-      console.log(users.data._id);
       const formDataToSend = new FormData();
-      formDataToSend.append("userId", users.data._id); // Assuming user._id is needed for identification
+      formDataToSend.append("barberId", barber.user._id); // Assuming user._id is needed for identification
       if (formData.name) formDataToSend.append("name", formData.name);
       if (formData.password)
         formDataToSend.append("password", formData.password);
       if (formData.location)
         formDataToSend.append("location", formData.location);
       if (formData.phone) formDataToSend.append("phone", formData.phone);
+      if (formData.specification)
+        formDataToSend.append("specificaton", formData.specification);
+      if (formData.bio) formDataToSend.append("bio", formData.bio);
+      if (formData.experience)
+        formDataToSend.append("experience", formData.experience);
       if (selectedFile) formDataToSend.append("photo", selectedFile);
-
       const response = await axios.post(
-        `${BASE_URL}/users/userProfileUpdate/${users.data._id}`,
+        `${BASE_URL}/barbers/updateProfile/${barber.user._id}`,
         formDataToSend,
         {
           headers: {
@@ -65,11 +74,9 @@ const Profile = ({ users }) => {
           },
         }
       );
-
       const result = response.data;
       console.log(result);
-
-      if (response.status === 200) {
+      if (response.status === 201) {
         navigate("/home");
         alert(result.message);
       } else {
@@ -80,7 +87,6 @@ const Profile = ({ users }) => {
       alert(err.message);
     }
   };
-
   return (
     <form onSubmit={submitHandler}>
       <div className="mb-3">
@@ -120,6 +126,36 @@ const Profile = ({ users }) => {
           placeholder="Location"
           name="location"
           value={formData.location}
+          onChange={handleInputChange}
+          className="w-full pr-4  py-3 border-b border-solid border-[#35727B] focus:outline-none focus:border-b-primaryColor text-lg lg:text-[13px] leading-3 text-headingColor placeholder:text-textColor cursor-pointer"
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="text"
+          placeholder="About you..."
+          name="bio"
+          value={formData.bio}
+          onChange={handleInputChange}
+          className="w-full pr-4  py-3 border-b border-solid border-[#35727B] focus:outline-none focus:border-b-primaryColor text-lg lg:text-[13px] leading-3 text-headingColor placeholder:text-textColor cursor-pointer"
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="text"
+          placeholder="Specification"
+          name="specification"
+          value={formData.specification}
+          onChange={handleInputChange}
+          className="w-full pr-4  py-3 border-b border-solid border-[#35727B] focus:outline-none focus:border-b-primaryColor text-lg lg:text-[13px] leading-3 text-headingColor placeholder:text-textColor cursor-pointer"
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="text"
+          placeholder="experience"
+          name="experience"
+          value={formData.experience}
           onChange={handleInputChange}
           className="w-full pr-4  py-3 border-b border-solid border-[#35727B] focus:outline-none focus:border-b-primaryColor text-lg lg:text-[13px] leading-3 text-headingColor placeholder:text-textColor cursor-pointer"
         />
@@ -164,4 +200,4 @@ const Profile = ({ users }) => {
   );
 };
 
-export default Profile;
+export default BarberProfile;

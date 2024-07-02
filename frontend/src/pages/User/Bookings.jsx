@@ -1,6 +1,6 @@
 import useFetchData from "../../hooks/useFetchData";
 import { BASE_URL } from "../../config";
-import Barber from "../Barber/Barber";
+// import Barber from "../Barber/Barber";
 
 const Bookings = (user) => {
   const { data: appointments } = useFetchData(`${BASE_URL}/users/`);

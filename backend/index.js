@@ -8,6 +8,7 @@ import connectDB from './database/db.js';
 import authRouter from "./Routes/auth.js";
 import userRouter from "./Routes/user.js"
 import barberRouter from "./Routes/barber.js";
+import appointmentRouter from "./Routes/appointment.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -39,6 +40,7 @@ app.use(cors(corsOptions));
 app.use('/barber-booking-system/auth', authRouter);
 app.use('/barber-booking-system/users', userRouter,);
 app.use('/barber-booking-system/barbers', barberRouter);
+app.use('/barber-booking-system/appointments', appointmentRouter);
 app.use('/barber-booking-system/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(port, () => {
