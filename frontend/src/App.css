@@ -1,3 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+}
+
+.sticky__header {
+width: 100%;
+height: 80px;
+line-height: 80px;
+position: sticky;
+top: 0;
+left: 0;
+z-index: 99999;
+background: white;
+box-shadow: 3px 3px -8px 3pc #ddd;
+}cls
+/* @media  only screen and (max-width: 768px) {
+  .navigation{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: #00000084;
+    display: none;
+  }
+  .menu {
+    width: 15rem;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #fff;
+    z-index: 200;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 30px;
+  }
+
+  .show__menu {
+    display: block
+  }
+} */
 .homepage-container {
     padding: 20px;
     margin: 0 auto;
@@ -7,7 +58,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center; /* Center the content */
   }
-  
+
   .button-container {
     margin-top: 20px;
   }
@@ -16,25 +67,36 @@
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    color: #007bff; /* Text color */
-    background-color: transparent; /* Transparent background */
-    border: 2px solid #007bff; /* Border color */
+    color: black; 
+    background-color: transparent; 
+    border: 2px solid white; 
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s; /* Transition for hover effects */
+    transition: background-color 0.3s, color 0.3s;
   }
   
   .nav-button:hover {
-    background-color: #007bff; /* Background color on hover */
-    color: #fff; /* Text color on hover */
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 10px white;
   }
   
   .slider-container {
     margin-top: 20px;
+    width:auto;
+    overflow: hidden;
+    background-color:rgb(240, 233, 223);
   }
   
   .slick-slide img {
     display: block;
-    width: 100%;
-    height: auto;
+    width: 40%;
+    height:300px;
+    animation: slide 1.5s infinite ease-in-out;
   }
+
+  .description {
+    flex: 1; 
+    margin-right: 20px; 
+  }
+
