@@ -92,7 +92,7 @@ const Footer = () => {
             </h2>
             <ul>
               {quickLinks01.map((item, index) => (
-                <li key={index} className="mb-4">
+                <li key={index} className="mb-3">
                   <Link
                     to={item.path}
                     className="text-[16px] leading-7 font-[400] text-textColor"
@@ -110,7 +110,7 @@ const Footer = () => {
             </h2>
             <ul>
               {quickLinks02.map((item, index) => (
-                <li key={index} className="mb-4">
+                <li key={index} className="mb-3">
                   <Link
                     to={item.path}
                     className="text-[16px] leading-7 font-[400] text-textColor"
@@ -128,7 +128,7 @@ const Footer = () => {
             </h2>
             <ul>
               {quickLinks03.map((item, index) => (
-                <li key={index} className="mb-4">
+                <li key={index} className="mb-3">
                   <Link
                     to={item.path}
                     className="text-[16px] leading-7 font-[400] text-textColor"
