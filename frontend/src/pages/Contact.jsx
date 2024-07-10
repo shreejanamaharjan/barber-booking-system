@@ -1,5 +1,6 @@
 import React from "react";
 
+// Contact section
 const Contact = () => {
   return (
     <section>
