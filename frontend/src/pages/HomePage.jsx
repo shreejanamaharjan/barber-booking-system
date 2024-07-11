@@ -152,7 +152,7 @@ const HomePage = () => {
 
      {/* About Us Section */}
      <div className="container mt-[50px]">
-          <h2 className="heading text-[35px] text-center text-primaryColor">About Us</h2>
+          <h2 className="heading text-[35px] text-center text-primaryColor">About Us</h2> {/*flex*/}
        
        <div className="flex flex-col lg:flex-row items-start lg:items-center">
           <p className="text__para text-left text-base lg:w-1/2 leading-loose">
