@@ -11,6 +11,7 @@ import aboutImg from '../assets/images/barber.jpg';
 
 const HomePage = () => {
   //login user data
+
   const getUserData = async () => {
     try {
       const res = await axios.post(
@@ -73,7 +74,7 @@ const HomePage = () => {
           </div>
           </div>
           <div className="lg:w-1/2">
-            <img src={image} alt="Barber Image" className="h-auto object-cover" />
+            <img src={image} alt="Barber Image" className="h-auto object-cover" /> {/*barber image*/}
           </div>
         </div>
       </div>
