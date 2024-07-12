@@ -39,7 +39,7 @@ const Register = () => {
       const result = await res.json();
 
       if (res.ok) {
-        dispatch({ type: "REGISTER_SUCCESS" });
+        dispatch({ type: "REGISTER_SUCCESS" });  
 
         navigate("/login");
         alert(result.message);
@@ -86,10 +86,10 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-3">  {/*email*/}
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Enter your email" 
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
